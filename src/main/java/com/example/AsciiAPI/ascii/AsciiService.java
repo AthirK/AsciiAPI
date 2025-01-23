@@ -31,4 +31,9 @@ public class AsciiService
 
         return ascii;
     }
+
+    public void deleteAscii(String title) {
+        Ascii ascii = asciiRepository.findByTitle(title).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+        asciiRepository.delete(ascii);
+    }
 }

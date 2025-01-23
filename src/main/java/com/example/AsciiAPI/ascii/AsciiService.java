@@ -2,6 +2,7 @@ package com.example.AsciiAPI.ascii;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -97,7 +98,16 @@ public class AsciiService
         //samples.add(new Ascii("Eve", LocalDate.of(2019, 6, 30), "Shrug", "¯\\_(ツ)_/¯"));
 
         // Lisa
-        //samples.add(new Ascii("Frank", LocalDate.of(2023, 3, 8), "Table Flip", "(╯°□°）╯︵ ┻━┻"));
+        samples.add(new Ascii("Lisa", LocalDate.of(2025, 1, 23), "Ribbon", "{\n" +
+                "  \"ascii_art\": \"⠀⢀⠤⠤⢄⡀⠀⠀⠀⠀⠀⠀⢀⠤⠒⠒⢤\\n" +
+                "⠀⠏⠀⠀⠀⠈⠳⡄⠀⠀⡠⠚⠁⠀⠀⠀⠘⡄\\n" +
+                "⢸⠀⠀⠀⠤⣤⣤⡆⠀⠈⣱⣤⣴⡄⠀⠀⠀⡇\\n" +
+                "⠘⡀⠀⠀⠀⠀⢈⣷⠤⠴⢺⣀⠀⠀⠀⠀⢀⡇\\n" +
+                "⠀⠡⣀⣀⣤⠶⠻⡏⠀⠀⢸⡟⠙⣶⡤⠤⠼\\n" +
+                "⠀⠀⢠⡾⠉⠀⢠⡆⠀⠀⢸⠃⠀⠈⢻⣆\\n" +
+                "⠀⠀⣿⣠⢶⣄⠀⡇⠀⠀⠘⠃⣀⡤⢌⣈⡀⠀\\n" +
+                "⠀⠀⠀⠀⠀⠙⠼⠀⠀⠀⠀⠿⠋\"\n" +
+                "}"));
 
         // Magnus
         //samples.add(new Ascii("Grace", LocalDate.of(2018, 9, 22), "Flower", "@}-,-'---"));

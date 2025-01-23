@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,6 +32,15 @@ public class AsciiController
         }
     }
 
+    private static class CreateAsciiDTO
+    {
+        public String artist;
+        public LocalDate date;
+        public String title;
+        public String art;
+    }
+
+    // delete ascii
     @DeleteMapping("/{title}")
     public ResponseEntity<?> deleteAscii(@PathVariable String title)
     {
@@ -53,21 +61,31 @@ public class AsciiController
         return ResponseEntity.ok(asciiService.viewAsciis());
     }
 
-    private static class CreateAsciiDTO
-    {
-        public String artist;
-        public LocalDate date;
-        public String title;
-        public String art;
-    }
-
     @GetMapping("/search-by-title")
-    public ResponseEntity<?> searchByTitle(@RequestParam String title) {
-        try {
+    public ResponseEntity<?> searchByTitle(@RequestParam String title)
+    {
+        try
+        {
             Ascii ascii = asciiService.searchByTitle(title);
             return ResponseEntity.ok(ascii);
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e)
+        {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    // Endpoint to generate and save sample Ascii artworks
+    @PostMapping("/ascii-samples")
+    public ResponseEntity<?> generateAsciiSamples()
+    {
+        try
+        {
+            return ResponseEntity.ok(asciiService.generateAsciiSamples());
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error generating samples.");
         }
     }
 }

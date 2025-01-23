@@ -31,4 +31,9 @@ public class AsciiService
 
         return ascii;
     }
+
+    public Ascii searchByTitle(String title) {
+        return asciiRepository.findByTitle(title)
+                .orElseThrow(() -> new IllegalArgumentException("No Ascii art found for title: " + title));
+    }
 }

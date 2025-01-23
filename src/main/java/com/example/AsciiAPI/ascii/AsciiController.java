@@ -33,6 +33,18 @@ public class AsciiController
         }
     }
 
+    @DeleteMapping("/{title}")
+    public ResponseEntity<?> deleteAscii(@PathVariable String title) {
+        try {
+            asciiService.deleteAscii(title);
+            return ResponseEntity.ok("Ascii deleted.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
+    }
+
     private static class CreateAsciiDTO
     {
         public String artist;

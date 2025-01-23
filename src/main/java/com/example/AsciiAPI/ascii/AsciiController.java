@@ -2,9 +2,7 @@ package com.example.AsciiAPI.ascii;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -31,6 +29,18 @@ public class AsciiController
         {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @DeleteMapping("/{title}")
+    public ResponseEntity<?> deleteAscii(@PathVariable String title) {
+        try {
+            asciiService.deleteAscii(title);
+            return ResponseEntity.ok("Ascii deleted.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
     }
 
     private static class CreateAsciiDTO

@@ -48,8 +48,12 @@ public class AsciiService
     public void deleteAscii(String title)
     {
         Ascii ascii = asciiRepository.findByTitle(title).orElseThrow(() -> new IllegalArgumentException(title + " not found"));
-        asciiRepository.delete(ascii);
     }
+
+    public Ascii searchByTitle(String title) {
+        return asciiRepository.findByTitle(title)
+                .orElseThrow(() -> new IllegalArgumentException("No Ascii art found for title: " + title));
+     }
 
     /**
      * A method that displays all Ascii-artwork in the database.

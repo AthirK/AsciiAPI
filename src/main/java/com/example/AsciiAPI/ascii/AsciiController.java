@@ -1,10 +1,12 @@
 package com.example.AsciiAPI.ascii;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -57,5 +59,15 @@ public class AsciiController
         public LocalDate date;
         public String title;
         public String art;
+    }
+
+    @GetMapping("/search-by-title")
+    public ResponseEntity<?> searchByTitle(@RequestParam String title) {
+        try {
+            Ascii ascii = asciiService.searchByTitle(title);
+            return ResponseEntity.ok(ascii);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }

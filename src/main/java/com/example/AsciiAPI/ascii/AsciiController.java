@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,7 +15,8 @@ public class AsciiController
     @PostMapping("/create-ascii")
     public ResponseEntity<?> createAscii(@RequestBody CreateAsciiDTO dto)
     {
-        try {
+        try
+        {
             Ascii ascii = asciiService.createAscii(
                     dto.artist,
                     dto.date,
@@ -32,15 +32,23 @@ public class AsciiController
     }
 
     @DeleteMapping("/{title}")
-    public ResponseEntity<?> deleteAscii(@PathVariable String title) {
-        try {
+    public ResponseEntity<?> deleteAscii(@PathVariable String title)
+    {
+        try
+        {
             asciiService.deleteAscii(title);
-            return ResponseEntity.ok("Ascii deleted.");
-        } catch (Exception e) {
+            return ResponseEntity.ok(title + " deleted.");
+        }
+        catch (Exception e)
+        {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
 
-
+    @GetMapping("/view-asciis")
+    public ResponseEntity<?> viewAsciis()
+    {
+        return ResponseEntity.ok(asciiService.viewAsciis());
     }
 
     private static class CreateAsciiDTO
@@ -50,5 +58,4 @@ public class AsciiController
         public String title;
         public String art;
     }
-
 }

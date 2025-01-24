@@ -2,6 +2,7 @@ package com.example.AsciiAPI.ascii;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,16 +62,28 @@ public class AsciiController
         return ResponseEntity.ok(asciiService.viewAsciis());
     }
 
+
     @GetMapping("/search-by-title")
-    public ResponseEntity<?> searchByTitle(@RequestParam String title)
-    {
-        try
-        {
+    public ResponseEntity<?> searchByTitle(@RequestParam String title) {
+        try {
             Ascii ascii = asciiService.searchByTitle(title);
-            return ResponseEntity.ok(ascii);
-        }
-        catch (IllegalArgumentException e)
-        {
+
+            // Bygg HTML-svaret dynamiskt med ASCII-konst och radbrytningar
+            String htmlContent = "<!doctype html>\n" +
+                    "<html>\n" +
+                    "  <head><title>ASCII Art</title></head>\n" +
+                    "  <body>\n" +
+                    "    <h1>" + ascii.getTitle() + " (" + ascii.getArtist() + ")</h1>\n" +
+                    "    <p><strong>Datum:</strong> " + ascii.getDate() + "</p>\n" +
+                    "    <pre>" + ascii.getArt().replace("\n", "<br>") + "</pre>\n" +
+                    "  </body>\n" +
+                    "</html>";
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_HTML)
+                    .body(htmlContent);
+
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

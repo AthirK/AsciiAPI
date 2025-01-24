@@ -24,6 +24,7 @@ public class Ascii
     private String title;
 
     @Column(columnDefinition = "TEXT")                      // text for more characters
+
     private String art;
 
     public Ascii(String artist, LocalDate date, String title, String art)

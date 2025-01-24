@@ -122,7 +122,14 @@ public class AsciiService
 
 
         // Johanna
-        //samples.add(new Ascii("Eve", LocalDate.of(2019, 6, 30), "Shrug", "¯\\_(ツ)_/¯"));
+        samples.add(new Ascii("Johanna", LocalDate.of(2025, 1, 24), "Mouse",
+                """
+                           (T)_(T)
+                           |^ . ^|
+                           (_\\_/_)
+                           |-D -D|
+                        ~~~|-D -D|
+                """));
 
         // Lisa
         samples.add(new Ascii("Lisa", LocalDate.of(2025, 1, 23), "Ribbon", "{\n" +

@@ -23,7 +23,8 @@ public class Ascii
     @Column(unique = true, nullable = false)                // unique constraint on title
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")                      // text for more characters
+
     private String art;
 
     public Ascii(String artist, LocalDate date, String title, String art)

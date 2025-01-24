@@ -94,7 +94,14 @@ public class AsciiService
         //samples.add(new Ascii("Athir", LocalDate.of(2020, 11, 25), "Cat", "^_^"));
 
         // Johanna
-        //samples.add(new Ascii("Eve", LocalDate.of(2019, 6, 30), "Shrug", "¯\\_(ツ)_/¯"));
+        samples.add(new Ascii("Johanna", LocalDate.of(2025, 1, 24), "Mouse",
+                """
+                           (T)_(T)
+                           |^ . ^|
+                           (_\\_/_)
+                           |-D -D|
+                        ~~~|-D -D|
+                """));
 
         // Lisa
         //samples.add(new Ascii("Frank", LocalDate.of(2023, 3, 8), "Table Flip", "(╯°□°）╯︵ ┻━┻"));

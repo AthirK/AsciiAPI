@@ -59,11 +59,25 @@ public class AsciiController
     @GetMapping("/view-asciis")
     public ResponseEntity<?> viewAsciis()
     {
+
         return ResponseEntity.ok(asciiService.viewAsciis());
     }
 
-
     @GetMapping("/search-by-title")
+    public ResponseEntity<?> searchByTitle(@RequestParam String title)
+    {
+        try
+        {
+            Ascii ascii = asciiService.searchByTitle(title);
+            return ResponseEntity.ok(ascii);
+        }
+        catch (IllegalArgumentException e)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    /*@GetMapping("/search-by-title")
     public ResponseEntity<?> searchByTitle(@RequestParam String title) {
         try {
             Ascii ascii = asciiService.searchByTitle(title);
@@ -86,7 +100,7 @@ public class AsciiController
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-    }
+    }*/
 
     // Endpoint to generate and save sample Ascii artworks
     @PostMapping("/ascii-samples")

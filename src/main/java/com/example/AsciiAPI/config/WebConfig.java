@@ -9,10 +9,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")  // Tillåter endast API-ändpunkter
-                .allowedOrigins("http://localhost:5500") // Den port där frontend körs (Live Server i VSCode)
-                .allowedMethods("GET", "POST", "PUT", "DELETE") // De metoder du vill tillåta
-                .allowedHeaders("*") // Tillåter alla headers
-                .allowCredentials(true); // Om du behöver hantera cookies/sessioner
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:5500") // The port where the frontend is running (Live Server in VSCode)
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
